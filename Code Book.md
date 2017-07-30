@@ -1,3 +1,5 @@
+# Code Book for the Getting and Cleaning Data Course Project
+
 The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tacc-xyz and tgyro-xyz. These time domain signals (prefix 't' to denote time) were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. Similarly, the acceleration signal was then separated into body and gravity acceleration signals (tbodyacc-xyz and tgravityacc-xyz) using another low pass Butterworth filter with a corner frequency of 0.3 Hz. 
 
 Subsequently, the body linear acceleration and angular velocity were derived in time to obtain jerk signals (tbodyaccjerk-xyz and tbodygyrojerk-xyz). Also the magnitude of these three-dimensional signals were calculated using the Euclidean norm (tbodyaccmag, tgravityaccmag, tbodyaccjerkmag, tbodygyromag, tbodygyrojerkmag). 
@@ -6,42 +8,42 @@ Finally a Fast Fourier Transform (FFT) was applied to some of these signals prod
 
 These signals were used to estimate variables of the feature vector for each pattern:  
 '-xyz' is used to denote 3-axial signals in the x, y and z directions.
-tbodyacc-xyz
-tgravityacc-xyz
-tbodyaccjerk-xyz
-tbodygyro-xyz
-tbodygyrojerk-xyz
-tbodyaccmag
-tgravityaccmag
-tbodyaccjerkmag
-tbodygyromag
-tbodygyrojerkmag
-fbodyacc-xyz
-fbodyaccjerk-xyz
-fbodygyro-xyz
-fbodyaccmag
-fbodyaccjerkmag
-fbodygyromag
-fbodygyrojerkmag
+* tbodyacc-xyz
+* tgravityacc-xyz
+* tbodyaccjerk-xyz
+* tbodygyro-xyz
+* tbodygyrojerk-xyz
+* tbodyaccmag
+* tgravityaccmag
+* tbodyaccjerkmag
+* tbodygyromag
+* tbodygyrojerkmag
+* fbodyacc-xyz
+* fbodyaccjerk-xyz
+* fbodygyro-xyz
+* fbodyaccmag
+* fbodyaccjerkmag
+* fbodygyromag
+* fbodygyrojerkmag
 
 
 The set of variables that were estimated from these signals are: 
-mean: mean value
-std: Standard deviation
+* mean: mean value
+* std: Standard deviation
 
 
 Additional vectors obtained by averaging the signals in a signal window sample. These are used on the angle variable:
-gravitymean
-tbodyaccmean
-tbodyaccjerkmean
-tbodygyromean
-tbodygyrojerkmean
+* gravitymean
+* tbodyaccmean
+* tbodyaccjerkmean
+* tbodygyromean
+* tbodygyrojerkmean
 
 
 Moreover, there are 3 other variables as below:
-label - list of the training and test labels (viz., 1-6)
-activity_label - the activity corresponding to the label (1 WALKING, 2 WALKING_UPSTAIRS, 3 WALKING_DOWNSTAIRS, 4 SITTING, 5 STANDING, 6 LAYING)
-subject - the label of the subject who performed the activity for each window sample. Its range is from 1 to 30.
+* label - list of the training and test labels (viz., 1-6)
+* activity_label - the activity corresponding to the label (1 WALKING, 2 WALKING_UPSTAIRS, 3 WALKING_DOWNSTAIRS, 4 SITTING, 5 STANDING, 6 LAYING)
+* subject - the label of the subject who performed the activity for each window sample. Its range is from 1 to 30.
 
 
 The complete list of variables of each feature vector is provided below:
