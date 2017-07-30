@@ -45,10 +45,11 @@ subject - the label of the subject who performed the activity for each window sa
 
 
 The complete list of variables of each feature vector is provided below:
-1 tbodyaccmeanx
-2 tbodyaccmeany
-3 tbodyaccmeanz
-4 tbodyaccstdx
+
+1. tbodyaccmeanx
+2. tbodyaccmeany
+3. tbodyaccmeanz
+4. tbodyaccstdx
 5 tbodyaccstdy
 6 tbodyaccstdz
 7 tgravityaccmeanx
