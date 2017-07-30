@@ -3,11 +3,22 @@
 #2. mean_activity_subject - This is a tidy data set with the average of each variable for each activity and each subject
 
 #Install and load the dependent R packages
-install.packages(c("dplyr", "xlsx","data.table"))
+install.packages(c("dplyr","data.table"))
 library("dplyr")
-library("xlsx")
 library("data.table")
 
+#Download all the files
+fileurl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+if(!file.exists("./UCI HAR Dataset.zip")){
+   download.file(fileurl, destfile = "./UCI HAR Dataset.zip")
+   unzip("UCI HAR Dataset.zip", exdir = ".")
+}
+
+#Get the current working directory
+path <- getwd()
+
+#Set the Working Directory
+setwd("./UCI HAR Dataset")
 
 #Read all the input files into R as data tables
 #Store the training and test datasets into data tables named "training" and "test" respectively
@@ -52,22 +63,24 @@ names(dataset) <- gsub("[[:punct:]]", "", names(dataset))
 #Extract only the measurements on the mean and standard deviation for each measurement
 tidy_dataset <- dataset[, (grep("mean|std", names(dataset)))]
 
-#Add the "labels" column to the dataset
-tidy_dataset <- cbind(tidy_dataset, labels)
-names(tidy_dataset)[ncol(tidy_dataset)] <- "label"
+#Map the activity corresponding to each of the labels
+labels$activitylabel <- activity_labels$V2[match(labels$V1,activity_labels$V1)]
 
-#Add a new column named "activitylabel" based on the activity corresponding to the label
-tidy_dataset$activitylabel <- activity_labels$V2[match(tidy_dataset$label,activity_labels$V1)]
-
-#Add a new column "subject" corresponding to the subject which performed the activity
-tidy_dataset <- cbind(tidy_dataset, subjects)
-names(tidy_dataset)[ncol(tidy_dataset)] <- "subject"
+#Add the "activity" and "subjects" columns to the dataset
+tidy_dataset <- cbind(labels$activitylabel, subjects, tidy_dataset)
+names(tidy_dataset)[1:2] <- c("activity", "subject")
 
 #Create a new data table in which the data is grouped by the activity and the subject
-grouped <- group_by(tidy_dataset, activitylabel, subject)
+grouped <- group_by(tidy_dataset, subject, activity)
 
 #Create a tidy data set "mean_activity_subject" with the average of each variable for each activity and each subject
 mean_activity_subject <- summarize_all(grouped, mean)
 
+#Write this dataset to a file
+write.table(mean_activity_subject, file = "./Mean_activity_subject.txt", row.names = FALSE)
+
 #Print the tidy dataset containing the means of all variables for each subject and activity
-mean_activity_subject
+head(mean_activity_subject)
+
+#Restore the working directory to it's previous state
+setwd(path)
